@@ -1,0 +1,8 @@
+{
+  "appId": "br.blog.om.pi",
+  "appName": "pi2020",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

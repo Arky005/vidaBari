@@ -1,0 +1,7 @@
+{
+  "name": "pi2020",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
