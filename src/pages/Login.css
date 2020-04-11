@@ -1,38 +1,52 @@
 
 
-
-#logo {
-    text-align: center;
+#logo-login {
+    margin-top:30px;
+    margin-bottom: 30px;
 }
 
-#conteudo {
+#conteudo-login {
     display:flex;
     flex-flow: column;
     width: 86%;
-    height: 70%;
-    margin-top: 15%;
+    height: 90%;
+    margin-top: 5%;
     margin-left: 7%;
     justify-content: space-between;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+#descricao-login {
+    margin: 50px auto;
 }
 
 #campos-login {
     display: flex;
     flex-flow: column;
+    margin-left:auto;
+    margin-right: auto;
+    width: 100%;
 }
 
-#input-usuario {
+#input-usuario-login {
     margin-bottom: 10px;
 }
 
-#input-senha {
+#input-senha-login {
     margin-bottom: 20px;
 }
 
-#cadastre-se {
+#cadastre-se-login {
     display: flex;
     flex-flow: column;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 40px;
+}
+
+#botao-cadastro-login {
+   width:100%;
 }
 
 

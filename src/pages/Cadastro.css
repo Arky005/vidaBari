@@ -1,0 +1,18 @@
+#conteudo-cadastro {
+    display:flex;
+    flex-flow: column;
+    min-height:500px;
+    width: 86%;
+    height: 90%;
+    margin-top: 5%;
+    margin-left: 7%;
+    justify-content: space-between;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+
+
+#titulo-cadastro {
+    font-size: 20pt;
+}
