@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonButton, IonIcon, IonProgressBar, IonSelect, IonSelectOption } from '@ionic/react';
 import './Cadastro.css';
 import { logInOutline } from 'ionicons/icons';
-import { loginUser } from '../firebaseConfig';
+import { loginUser, registerUser } from '../firebaseConfig';
 import {presentToast} from '../toast';
 import logo from '../images/logomid.jpg'
+import { useHistory } from 'react-router';
 
 const Cadastro: React.FC = () => {
 
@@ -14,6 +15,34 @@ const Cadastro: React.FC = () => {
   const [mostrarLoading, setMostrarLoading] = useState(false);
   const [tipoDeUsuario, setTipoDeUsuario] = useState('usuario');
   const [CPF, setCPF] = useState('');
+  const history = useHistory();
+
+  const efetuarCadastro = async() => {
+
+    try{
+
+      if( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email)) ) 
+        throw new Error('E-mail inválido.');
+
+      if( !(/^[0-9]*$/.test(CPF) && CPF.length==11) )
+        throw new Error('CPF inválido!');
+
+      if( !(nome.length>5 && /^[a-zA-Zà-úÀ-Ú\s]*$/.test(nome)) )
+        throw new Error('Nome inválido.');
+
+      if( password.length < 6 )
+        throw new Error('Senha deve conter pelo menos 6 caracteres.');
+
+      if( !await registerUser(email, password, nome, CPF, tipoDeUsuario))
+        throw new Error('Erro ao registrar.')
+
+      presentToast('Cadastrado com sucesso!');
+      history.push('/login');
+    } catch(error) {
+      presentToast(error.message);
+    }
+
+  }
 
   return (
     <IonPage>
@@ -45,7 +74,7 @@ const Cadastro: React.FC = () => {
                 <IonLabel position="floating">Senha</IonLabel>
                 <IonInput type="password" onIonChange={(e:any) => setPassword(e.target.value)}></IonInput>
             </IonItem>
-            <IonButton color="light">Efetuar cadastro</IonButton>
+            <IonButton onClick={()=>efetuarCadastro()} color="light">Efetuar cadastro</IonButton>
         </div>
       </IonContent>
     </IonPage>
