@@ -23,6 +23,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# credenciais firebase
-android/app/google-services.json
-src/firebaseConfig.ts

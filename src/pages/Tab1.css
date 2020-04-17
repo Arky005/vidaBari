@@ -1,3 +1,7 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+#titulo {
+  text-align: center;
+}

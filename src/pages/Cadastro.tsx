@@ -4,7 +4,7 @@ import './Cadastro.css';
 import { logInOutline } from 'ionicons/icons';
 import { loginUser, registerUser } from '../firebaseConfig';
 import {presentToast} from '../toast';
-import logo from '../images/logomid.jpg'
+import logo from '../images/logo.png'
 import { useHistory } from 'react-router';
 
 const Cadastro: React.FC = () => {
@@ -46,35 +46,35 @@ const Cadastro: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent color="primary">
+      <IonContent color="light">
         <div id="conteudo-cadastro">
-            <div id="logo-cadastro">LOGO_PEQUENO</div>
+            <div id="logo-cadastro"><img src={logo}/></div>
             <div id="titulo-cadastro">Cadastro</div>
 
-            <IonItem>
+            <IonItem color="secondary">
                 <IonLabel position="floating">Tipo de conta</IonLabel>
                 <IonSelect value={tipoDeUsuario} onIonChange={e => setTipoDeUsuario(e.detail.value)}>
                 <IonSelectOption value="usuario">Usuário</IonSelectOption>
                 <IonSelectOption value="nutri">Nutricionista</IonSelectOption>
                 </IonSelect>
             </IonItem>
-            <IonItem className="input-cadastro">
+            <IonItem color="secondary" className="input-cadastro">
                 <IonLabel position="floating">E-mail</IonLabel>
                 <IonInput type="email" onIonChange={(e:any) => setEmail(e.target.value)}></IonInput>
             </IonItem>
-            <IonItem className="input-cadastro">
+            <IonItem color="secondary" className="input-cadastro">
                 <IonLabel position="floating">CPF</IonLabel>
                 <IonInput onIonChange={(e:any) => setCPF(e.target.value)}></IonInput>
             </IonItem>
-            <IonItem className="input-cadastro">
+            <IonItem color="secondary" className="input-cadastro">
                 <IonLabel position="floating">Nome completo</IonLabel>
                 <IonInput id="nome-cadastro" onIonChange={(e:any) => setNome(e.target.value)}></IonInput>
             </IonItem>
-            <IonItem className="input-cadastro">
+            <IonItem color="secondary" className="input-cadastro">
                 <IonLabel position="floating">Senha</IonLabel>
                 <IonInput type="password" onIonChange={(e:any) => setPassword(e.target.value)}></IonInput>
             </IonItem>
-            <IonButton onClick={()=>efetuarCadastro()} color="light">Efetuar cadastro</IonButton>
+            <IonButton color="tertiary" onClick={()=>efetuarCadastro()}>Efetuar cadastro</IonButton>
         </div>
       </IonContent>
     </IonPage>

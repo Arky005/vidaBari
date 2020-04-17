@@ -5,20 +5,23 @@ import './Login.css';
 import { logInOutline } from 'ionicons/icons';
 import { loginUser } from '../firebaseConfig';
 import {presentToast} from '../toast';
-import logo from '../images/logomid.jpg'
-import { Redirect, Route, Link } from 'react-router-dom';
+import logo from '../images/logomid.png'
+import { Redirect, Route, Link, useHistory } from 'react-router-dom';
+
 
 const Login: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [mostrarLoading, setMostrarLoading] = useState(false);
+  const history = useHistory();
 
   const entrar = async () => {
     setMostrarLoading(true);
     const res = await loginUser(email, password);
     if(res){
-        presentToast('logou')
+       //presentToast('logou')
+      history.push('/tab1');
     } else {
         presentToast('E-mail ou senha incorretos.');
     }
@@ -27,23 +30,24 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent color="primary">
+      <IonContent color="light">
         <div id="conteudo-login">
 
-            <div id="logo-login">LOGO_MEDIO</div>
-            <div id="descricao-login">O #VidaBari ...</div>
+            <div id="logo-login"><img src={logo}/></div>
+            <div id="descricao-login"><i>O #VidaBari ajuda a manter sua vida saudável, fornecendo diversas funções para
+              acompanhar sua evolução!</i></div>
 
             <div id="campos-login">
-                <IonItem id="input-usuario-login">
+                <IonItem color="secondary" id="input-usuario-login">
                     <IonLabel position="floating">E-mail</IonLabel>
                     <IonInput onIonChange={(e:any) => setEmail(e.target.value)}></IonInput>
                 </IonItem>
-                <IonItem id="input-senha-login">
+                <IonItem color="secondary" id="input-senha-login">
                     <IonLabel position="floating">Senha</IonLabel>
                     <IonInput type="password"  onIonChange={(e:any) => setPassword(e.target.value)}></IonInput>
                 </IonItem>
-                <div id="loading-login">{(mostrarLoading ? <IonProgressBar type="indeterminate" color="light"></IonProgressBar> : '')}</div>
-                <IonButton id="botao-entrar-login" color="light" onClick={()=> entrar()}>
+                <div id="loading-login">{(mostrarLoading ? <IonProgressBar type="indeterminate" color="medium"></IonProgressBar> : '')}</div>
+                <IonButton id="botao-entrar-login" color="tertiary" onClick={()=> entrar()}>
                     Entrar
                     <IonIcon slot="end" icon={logInOutline} />
                 </IonButton>
@@ -52,7 +56,7 @@ const Login: React.FC = () => {
             <div id="cadastre-se-login">
                 <span>Não tem uma conta? Cadastre-se!</span>
                 <Link to="/cadastro"> 
-                  <IonButton color="light" id="botao-cadastro-login">Cadastrar-se</IonButton>
+                  <IonButton color="tertiary" id="botao-cadastro-login">Cadastrar-se</IonButton>
                 </Link>
             </div>
         </div>
