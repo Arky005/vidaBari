@@ -20,12 +20,13 @@
 
 #descricao-login {
     font-size: 14pt;
-    margin: auto auto;
+    margin: 20px auto;
 }
 
 #campos-login {
     display: flex;
     flex-flow: column;
+    margin:auto;
     margin-left:auto;
     margin-right: auto;
     width: 100%;
