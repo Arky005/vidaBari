@@ -18,7 +18,7 @@ const Cadastro: React.FC = () => {
   const history = useHistory();
 
   const efetuarCadastro = async() => {
-
+    setMostrarLoading(true);
     try{
 
       if( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email)) ) 
@@ -41,39 +41,40 @@ const Cadastro: React.FC = () => {
     } catch(error) {
       presentToast(error.message);
     }
-
+    setMostrarLoading(false);
   }
 
   return (
     <IonPage>
-      <IonContent color="light">
+      <IonContent color="secondary">
         <div id="conteudo-cadastro">
-            <div id="logo-cadastro"><img src={logo}/></div>
+            <div id="logo-cadastro"><img src={logo} width="100px" height="75px"/></div>
             <div id="titulo-cadastro">Cadastro</div>
 
-            <IonItem color="secondary">
+            <IonItem color="light">
                 <IonLabel position="floating">Tipo de conta</IonLabel>
                 <IonSelect value={tipoDeUsuario} onIonChange={e => setTipoDeUsuario(e.detail.value)}>
                 <IonSelectOption value="usuario">Usuário</IonSelectOption>
                 <IonSelectOption value="nutri">Nutricionista</IonSelectOption>
                 </IonSelect>
             </IonItem>
-            <IonItem color="secondary" className="input-cadastro">
+            <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">E-mail</IonLabel>
                 <IonInput type="email" onIonChange={(e:any) => setEmail(e.target.value)}></IonInput>
             </IonItem>
-            <IonItem color="secondary" className="input-cadastro">
+            <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">CPF</IonLabel>
                 <IonInput onIonChange={(e:any) => setCPF(e.target.value)}></IonInput>
             </IonItem>
-            <IonItem color="secondary" className="input-cadastro">
+            <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">Nome completo</IonLabel>
                 <IonInput id="nome-cadastro" onIonChange={(e:any) => setNome(e.target.value)}></IonInput>
             </IonItem>
-            <IonItem color="secondary" className="input-cadastro">
+            <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">Senha</IonLabel>
                 <IonInput type="password" onIonChange={(e:any) => setPassword(e.target.value)}></IonInput>
             </IonItem>
+            <div id="loading-login">{(mostrarLoading ? <IonProgressBar type="indeterminate" color="medium"></IonProgressBar> : '')}</div>
             <IonButton color="tertiary" onClick={()=>efetuarCadastro()}>Efetuar cadastro</IonButton>
         </div>
       </IonContent>
