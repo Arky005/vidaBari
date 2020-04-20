@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+import User from './models/User';
 
 var config = {
     apiKey: "AIzaSyD7wNIAe_UMlHwtNLENBM6k6DqKrmevjTU",
@@ -36,6 +37,22 @@ export async function registerUser(email, pass, nome, cpf, tipo) {
     } catch (error) {
         console.log(error)
         return false;
+    }
+}
+
+export async function getUser(email){
+    try {
+        const id = email.replace(/\./g, '_dot_');
+        let dados;
+       
+        await firebase.database().ref('users/'+id).once('value', (snapshot)=>{
+            dados = snapshot.val();
+        });
+        return new User(dados.tipo, dados.nome, dados.email, dados.cpf);
+        
+    } catch(error){
+        console.log(error);
+        return null;
     }
 }
 

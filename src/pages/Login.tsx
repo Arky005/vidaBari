@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonButton, IonIcon, IonProgressBar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonIcon, IonProgressBar } from '@ionic/react';
 import './Login.css';
 import { logInOutline } from 'ionicons/icons';
-import { loginUser } from '../firebaseConfig';
+import { loginUser, getUser } from '../firebaseConfig';
 import {presentToast} from '../toast';
 import logo from '../images/logo.png'
-import { Redirect, Route, Link, useHistory } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
 
@@ -20,9 +18,7 @@ const Login: React.FC = () => {
     setMostrarLoading(true);
     const res = await loginUser(email, password);
     if(res){
-       //presentToast('logou')
-      //history.push('/tab1');
-      history.replace('/tab1')
+      history.replace('/home', {user: await getUser(email)})
     } else {
         presentToast('E-mail ou senha incorretos.');
     }

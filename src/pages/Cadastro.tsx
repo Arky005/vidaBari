@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonItem, IonLabel, IonButton, IonIcon, IonProgressBar, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption } from '@ionic/react';
 import './Cadastro.css';
-import { logInOutline } from 'ionicons/icons';
-import { loginUser, registerUser } from '../firebaseConfig';
+import {  registerUser } from '../firebaseConfig';
 import {presentToast} from '../toast';
 import logo from '../images/logo.png'
 import { useHistory } from 'react-router';
@@ -17,6 +16,15 @@ const Cadastro: React.FC = () => {
   const [CPF, setCPF] = useState('');
   const history = useHistory();
 
+  const cpfMask = (value:string) => {
+    return value
+      .replace(/\D/g, '')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1') 
+  }
+
   const efetuarCadastro = async() => {
     setMostrarLoading(true);
     try{
@@ -24,10 +32,11 @@ const Cadastro: React.FC = () => {
       if( !(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email)) ) 
         throw new Error('E-mail inválido.');
 
-      if( !(/^[0-9]*$/.test(CPF) && CPF.length==11) )
+      const numbersCPF = CPF.replace(/\D/g, '');
+      if( !(/^[0-9]*$/.test(numbersCPF) && numbersCPF.length==11) )
         throw new Error('CPF inválido!');
 
-      if( !(nome.length>5 && /^[a-zA-Zà-úÀ-Ú\s]*$/.test(nome)) )
+      if( !(nome.length>5 && /^[a-zA-Zà-úÀ-Ú\s]*$/.test(nome)) || !nome.includes(' ') || nome.indexOf(' ')===0 )
         throw new Error('Nome inválido.');
 
       if( password.length < 6 )
@@ -64,7 +73,8 @@ const Cadastro: React.FC = () => {
             </IonItem>
             <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">CPF</IonLabel>
-                <IonInput onIonChange={(e:any) => setCPF(e.target.value)}></IonInput>
+                <IonInput value={CPF} onIonChange={(e:any) => setCPF(cpfMask(e.target.value))}></IonInput>
+
             </IonItem>
             <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">Nome completo</IonLabel>

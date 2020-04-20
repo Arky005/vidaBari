@@ -1,0 +1,19 @@
+ion-content ion-toolbar {
+  --background: translucent;
+}
+
+#bar-home{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+#titulo-home{
+  font-size: 16pt;
+  margin-left: 10px;
+}
+
+#botao-menu {
+  position: absolute;
+}

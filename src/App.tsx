@@ -7,11 +7,12 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
+  IonSplitPane
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
+import Home from './pages/Home';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Login from './pages/Login'
@@ -35,14 +36,15 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Menu from './components/Menu';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      
-      <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
+      <Menu />
+      <IonRouterOutlet id="main">
+          <Route path="/home" component={Home} />
+          <Route path="/tab2" component={Tab2} />
           <Route path="/tab3" component={Tab3} />
           <Route path="/cadastro" component={Cadastro} />
           <Route path="/login" component={Login} />
