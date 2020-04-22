@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import './Cadastro.css';
 import {  registerUser } from '../firebaseConfig';
 import {presentToast} from '../toast';
 import logo from '../images/logo.png'
 import { useHistory } from 'react-router';
+import { arrowBack } from 'ionicons/icons';
 
 const Cadastro: React.FC = () => {
 
@@ -57,6 +58,7 @@ const Cadastro: React.FC = () => {
     <IonPage>
       <IonContent color="secondary">
         <div id="conteudo-cadastro">
+            <IonIcon icon={arrowBack} onClick={()=>history.push('/login')} color="dark"/>
             <div id="logo-cadastro"><img src={logo} width="100px" height="75px"/></div>
             <div id="titulo-cadastro">Cadastro</div>
 
