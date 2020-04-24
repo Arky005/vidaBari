@@ -35,6 +35,10 @@ const Menu: React.FC = () => {
               { location?.state?.user?.tipo === 'usuario' ? 
                (<div>
                   <IonListHeader>Menu usuário</IonListHeader>
+                  <IonItem onClick={()=>history.push('/imc', {user: location.state.user})} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" color="dark" icon={logOutOutline} />
+                  <IonLabel>Calculadora IMC</IonLabel>
+                </IonItem>
                 </div>) 
               : 
               (<div>

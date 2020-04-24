@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import User from './models/User';
+import { presentToast } from './toast';
 
 var config = {
     apiKey: "AIzaSyD7wNIAe_UMlHwtNLENBM6k6DqKrmevjTU",
@@ -38,6 +39,10 @@ export async function registerUser(email, pass, nome, cpf, tipo) {
         console.log(error)
         return false;
     }
+}
+
+export function mtoken () {
+    presentToast(firebase.messaging().getToken());
 }
 
 export async function getUser(email){

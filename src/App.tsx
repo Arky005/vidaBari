@@ -17,6 +17,7 @@ import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
+import IMC from './pages/IMC'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -43,6 +44,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <Menu />
       <IonRouterOutlet id="main">
+          <Route path="/imc" component={IMC} />
           <Route path="/home" component={Home} />
           <Route path="/tab2" component={Tab2} />
           <Route path="/tab3" component={Tab3} />

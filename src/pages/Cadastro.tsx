@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import './Cadastro.css';
-import {  registerUser } from '../firebaseConfig';
+import {  registerUser, mtoken } from '../firebaseConfig';
 import {presentToast} from '../toast';
 import logo from '../images/logo.png'
 import { useHistory } from 'react-router';
 import { arrowBack } from 'ionicons/icons';
+import { Plugins } from "@capacitor/core";
+import { FCM } from "capacitor-fcm";
 
 const Cadastro: React.FC = () => {
 
