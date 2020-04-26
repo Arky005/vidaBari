@@ -18,6 +18,7 @@ import Tab3 from './pages/Tab3';
 import Login from './pages/Login'
 import Cadastro from './pages/Cadastro'
 import IMC from './pages/IMC'
+import { Plugins } from '@capacitor/core';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,12 +36,16 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
+
 /* Theme variables */
 import './theme/variables.css';
 import Menu from './components/Menu';
+const { SplashScreen } = Plugins;
 
 const App: React.FC = () => {
 
+  // Hide the splash (you should do this on app launch)
+  SplashScreen.hide();
 
   return (
   <IonApp>

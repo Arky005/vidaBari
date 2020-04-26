@@ -23,7 +23,15 @@
 }
 
 #texto-imc{
-    padding:30px;
+    margin:30px;
     text-align: center;
     font-size: 16pt;
+}
+
+#imc-container{
+    display: flex;
+    margin-top:20px;
+    height:80%;
+    flex-flow: column;
+    justify-content: space-around;
 }
