@@ -1,0 +1,29 @@
+#chart-container{ 
+    display: flex;
+    width: 100%;
+    height:200px;
+}
+
+#gauge-chart1{
+    width: 100%;
+    height:200px;
+}
+
+#imc-campos-container{
+    width: 60%;
+    margin-left:20%;
+}
+
+.input-imc{
+    margin-bottom: 10px;
+}
+
+#imc-botao{
+    width: 100%;
+}
+
+#texto-imc{
+    padding:30px;
+    text-align: center;
+    font-size: 16pt;
+}

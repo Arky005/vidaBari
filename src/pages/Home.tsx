@@ -7,11 +7,13 @@ import Menu from '../components/Menu';
 import { happy } from 'ionicons/icons';
 import {  Route } from 'react-router-dom';
 import Tabs from '../components/Tabs'
+import User from '../models/User';
 
 const Home: React.FC = () => {
   const location = useLocation() as any;
+  const state = useState() as any;
   const user = location?.state?.user;
-
+  console.log(user);
   
   if(user)
     return (

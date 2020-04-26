@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useHistory } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -39,7 +39,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Menu from './components/Menu';
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+
+
+  return (
   <IonApp>
     <IonReactRouter>
       <Menu />
@@ -54,6 +57,6 @@ const App: React.FC = () => (
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
-);
+  )};
 
 export default App;
