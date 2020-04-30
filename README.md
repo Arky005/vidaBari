@@ -20,7 +20,7 @@ git checkout -b develop
 npm install
 ```
 7. Abra o projeto com o vscode.
-#### Para ver as alterações, execute o seguinte comando na pasta raiz do projeto:
+#### Para o app rodando, execute o seguinte comando na pasta raiz do projeto:
 ```sh
 ionic serve
 ```
