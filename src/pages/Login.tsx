@@ -18,7 +18,11 @@ const Login: React.FC = () => {
     setMostrarLoading(true);
     const res = await loginUser(email, password);
     if(res){
-      history.replace('/home', {user: await getUser(email)})
+      let user = await getUser(email);
+      if(user?.tipo=='usuario')
+        history.replace('/home', {user})
+      else
+      history.replace('/home-nutri', {user})
     } else {
         presentToast('E-mail ou senha incorretos.');
     }

@@ -40,6 +40,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Menu from './components/Menu';
+import CadastroAluno from './pages/CadastroAluno';
+import HomeNutri from './pages/HomeNutri';
+import VerAlunos from './pages/VerAlunos';
+import Dicas from './pages/Dicas';
+import Voce from './pages/Voce';
 const { SplashScreen } = Plugins;
 
 const App: React.FC = () => {
@@ -53,10 +58,15 @@ const App: React.FC = () => {
       <Menu />
       <IonRouterOutlet id="main">
           <Route path="/imc" component={IMC} />
-          <Route path="/home" component={Home} />
+          <Route path="/home" component={Home} exact={true} />
           <Route path="/tab2" component={Tab2} />
           <Route path="/tab3" component={Tab3} />
           <Route path="/cadastro" component={Cadastro} />
+          <Route path="/cadastrar-aluno" component={CadastroAluno} />
+          <Route path="/ver-alunos" component={VerAlunos} />
+          <Route path="/home-nutri" component={HomeNutri} exact={true} />
+          <Route path="/dicas" component={Dicas} exact={true} />
+          <Route path="/voce" component={Voce} exact={true} />
           <Route path="/login" component={Login} />
           <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
       </IonRouterOutlet>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonRouterOutlet, IonList, IonItem, IonMenu, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton, IonButtons, IonTabs, IonIcon, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
-import './Home.css';
+import './Voce.css';
 import { useLocation, useHistory } from 'react-router';
 import logo from '../images/logo2.png'
 import Menu from '../components/Menu';
@@ -9,7 +9,7 @@ import {  Route } from 'react-router-dom';
 import Tabs from '../components/Tabs'
 import User from '../models/User';
 
-const Home: React.FC = () => {
+const Voce: React.FC = () => {
   const location = useLocation() as any;
   const state = useState() as any;
   const user = location?.state?.user;
@@ -30,19 +30,17 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent color="secondary">
-          <div id="conteudo-home-container">
-          LEMBRETES
-            <div className="card-home">
-              
-              Você tem dicas não lidas! Visite a aba Dicas
-              </div>
-           <div className="card-home" id="cartao-dias">
-              <div id="cartao-dias-container">
-              <span>Em acompanhamento há 12 dias.</span>
-              <IonIcon icon={happy} color="primary" id="icone-frase"></IonIcon>
-              <span>Continue assim! Perseverança é a chave!</span>
-              </div>
+          <div id="conteudo-home-container2">
+            Suas estatísticas
+            <div className="card-home2">
+            Seu nutricionista: Nutri
             </div>
+            Seus dados
+            <div className="card-home2">
+                Nome: {user?.nome}<br></br>
+                E-mail: {user?.email}
+            </div>
+            
 
           </div>
 
@@ -55,4 +53,4 @@ const Home: React.FC = () => {
     return(<div>deu ruim brother</div>);
 };
 
-export default Home;
+export default Voce;

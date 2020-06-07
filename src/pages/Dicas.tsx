@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonRouterOutlet, IonList, IonItem, IonMenu, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton, IonButtons, IonTabs, IonIcon, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
-import './Home.css';
+import './Dicas.css';
 import { useLocation, useHistory } from 'react-router';
 import logo from '../images/logo2.png'
 import Menu from '../components/Menu';
@@ -9,7 +9,7 @@ import {  Route } from 'react-router-dom';
 import Tabs from '../components/Tabs'
 import User from '../models/User';
 
-const Home: React.FC = () => {
+const Dicas: React.FC = () => {
   const location = useLocation() as any;
   const state = useState() as any;
   const user = location?.state?.user;
@@ -30,20 +30,11 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent color="secondary">
-          <div id="conteudo-home-container">
-          LEMBRETES
-            <div className="card-home">
-              
-              Você tem dicas não lidas! Visite a aba Dicas
-              </div>
-           <div className="card-home" id="cartao-dias">
-              <div id="cartao-dias-container">
-              <span>Em acompanhamento há 12 dias.</span>
-              <IonIcon icon={happy} color="primary" id="icone-frase"></IonIcon>
-              <span>Continue assim! Perseverança é a chave!</span>
-              </div>
+          <div id="conteudo-home-container3">
+            Dicas
+            <div className="card-home3">
+                A dica de hoje é fazer uma caminhada no seu bairro, no seu ritmo!
             </div>
-
           </div>
 
           <Tabs children={user}/>
@@ -55,4 +46,4 @@ const Home: React.FC = () => {
     return(<div>deu ruim brother</div>);
 };
 
-export default Home;
+export default Dicas;

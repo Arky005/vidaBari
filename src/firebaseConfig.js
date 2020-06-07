@@ -61,5 +61,9 @@ export async function getUser(email){
     }
 }
 
+export async function cadastrarAluno(user, emailAluno){
+    
+}
+
 
   

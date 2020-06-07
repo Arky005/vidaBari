@@ -10,7 +10,7 @@ import {
     IonMenuToggle,
     IonNote,
   } from '@ionic/react';
-import { logOutOutline } from 'ionicons/icons';
+import { logOutOutline, pencilOutline, addCircleOutline } from 'ionicons/icons';
 import './Menu.css';
 import { useLocation, useHistory } from 'react-router';
 import { menuController } from "@ionic/core";
@@ -39,13 +39,25 @@ const Menu: React.FC = () => {
                (<div>
                   <IonListHeader>Menu usuário</IonListHeader>
                   <IonItem onClick={()=>{history.replace('/imc', {user: location.state.user}); menuController.close()}} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" color="dark" icon={logOutOutline} />
-                  <IonLabel>Calculadora IMC</IonLabel>
-                </IonItem>
+                    <IonIcon slot="start" color="dark" icon={logOutOutline} />
+                    <IonLabel>Calculadora IMC</IonLabel>
+                  </IonItem>
                 </div>) 
               : 
               (<div>
                 <IonListHeader>Menu nutricionista</IonListHeader>
+                <IonItem onClick={()=>{history.replace('/cadastrar-aluno', {user: location.state.user}); menuController.close()}} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" color="dark" icon={addCircleOutline} />
+                  <IonLabel>Cadastrar Aluno</IonLabel>
+                </IonItem>
+                <IonItem onClick={()=>{history.replace('/cadastrar-aluno', {user: location.state.user}); menuController.close()}} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" color="dark" icon={addCircleOutline} />
+                  <IonLabel>Criar Planejamento</IonLabel>
+                </IonItem>
+                <IonItem onClick={()=>{history.replace('/imc', {user: location.state.user}); menuController.close()}} routerDirection="none" lines="none" detail={false}>
+                  <IonIcon slot="start" color="dark" icon={logOutOutline} />
+                  <IonLabel>Calculadora IMC</IonLabel>
+                </IonItem>
               </div>
               )}
 

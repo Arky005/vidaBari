@@ -18,6 +18,15 @@
     width: 33%;
 }
 
+.tab-button-nutri{
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
 .tab-title{
     font-size: 14px;
 }

@@ -1,0 +1,69 @@
+ion-content ion-toolbar {
+    --background: translucent;
+  }
+  
+  #bar-home{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  #titulo-home{
+    font-size: 16pt;
+    margin-left: 10px;
+  }
+  
+  #botao-menu {
+    position: absolute;
+  }
+  
+  #conteudo-home-container2 {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    height: 85%;
+    margin-top: 5%;
+  }
+  
+  .card-home2 {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 45%;
+    margin-bottom: 10px;
+    background-color: #f6f6f6;
+    box-shadow: 3px 3px 5px 3px #ddd;
+    color: grey;
+    border-radius: 10px;
+  }
+  
+  #cartao-frase {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-size: 16pt;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  #icone-frase{
+    font-size: 32pt;
+  }
+  
+  #cartao-dias{
+    display: flex;
+    padding: 20px;
+  }
+  
+  #cartao-dias-container{
+    font-size: 18pt;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+  }
