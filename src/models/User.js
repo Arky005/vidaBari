@@ -1,6 +1,6 @@
 class User {
     
-    constructor(tipo, nome, email, cpf, alunos=[], nutri=null){
+    constructor(tipo, nome, email, cpf, alunos=[], nutri=null, dieta=''){
         this.tipo=tipo;
         this.nome=nome;
         this.email=email;
@@ -8,6 +8,7 @@ class User {
         this.loggedUser=this;
         this.alunos=alunos;
         this.nutri=nutri;
+        this.dieta=dieta;
     }
     
 }

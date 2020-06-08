@@ -33,7 +33,7 @@ const HomeNutri: React.FC = () => {
           <div id="conteudo-home-container2">
             Suas estatísticas
             <div className="card-home2">
-            Quantidade de alunos: 1
+              Quantidade de alunos: {user.alunos.length}
             </div>
             Seus dados
             <div className="card-home2">

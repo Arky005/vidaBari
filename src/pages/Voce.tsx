@@ -31,9 +31,9 @@ const Voce: React.FC = () => {
         </IonHeader>
         <IonContent color="secondary">
           <div id="conteudo-home-container2">
-            Suas estatísticas
+            DIETA ATUAL
             <div className="card-home2">
-            Seu nutricionista: Nutri
+              {user.dieta}
             </div>
             Seus dados
             <div className="card-home2">

@@ -30,7 +30,7 @@ ion-content ion-toolbar {
   
   .card-home4 {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
     width: 90%;
     padding:10px;
     height: 100%;

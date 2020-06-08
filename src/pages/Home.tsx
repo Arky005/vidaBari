@@ -8,12 +8,34 @@ import { happy } from 'ionicons/icons';
 import {  Route } from 'react-router-dom';
 import Tabs from '../components/Tabs'
 import User from '../models/User';
+import LineChart from 'react-linechart';
+import { getIMC } from '../firebaseConfig';
 
 const Home: React.FC = () => {
   const location = useLocation() as any;
   const state = useState() as any;
   const user = location?.state?.user;
-  console.log(user);
+
+  const [imcs, setImcs]:any = useState([]);
+  const [data, setData]:any = useState([]);
+
+  const atualizarGrafico = async() =>{
+    const attimcs = await getIMC(user.email);
+    console.log(attimcs)
+    let points:any=[];
+    for(let i=0; i<attimcs.length; i++){
+      points.push({x: i, y: attimcs[i]})
+    }
+    setData([
+      {									
+          color: "steelblue", 
+          points: points 
+      }
+    ])
+    setImcs(attimcs);
+  }
+
+  atualizarGrafico();
   
   if(user)
     return (
@@ -31,11 +53,15 @@ const Home: React.FC = () => {
         </IonHeader>
         <IonContent color="secondary">
           <div id="conteudo-home-container">
-          LEMBRETES
+            Evolução
             <div className="card-home">
-              
-              Você tem dicas não lidas! Visite a aba Dicas
-              </div>
+            <LineChart 
+                        width={300}
+                        height={250}
+                        data={data}
+                    />
+            
+            </div>
            <div className="card-home" id="cartao-dias">
               <div id="cartao-dias-container">
               <span>Em acompanhamento há 12 dias.</span>

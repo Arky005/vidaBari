@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
 import './Cadastro.css';
-import {  registerUser, mtoken } from '../firebaseConfig';
+import {  registerUser} from '../firebaseConfig';
 import {presentToast} from '../toast';
 import logo from '../images/logo.png'
 import { useHistory } from 'react-router';

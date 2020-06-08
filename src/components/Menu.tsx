@@ -50,10 +50,6 @@ const Menu: React.FC = () => {
                   <IonIcon slot="start" color="dark" icon={addCircleOutline} />
                   <IonLabel>Cadastrar Aluno</IonLabel>
                 </IonItem>
-                <IonItem onClick={()=>{history.replace('/cadastrar-aluno', {user: location.state.user}); menuController.close()}} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" color="dark" icon={addCircleOutline} />
-                  <IonLabel>Criar Planejamento</IonLabel>
-                </IonItem>
                 <IonItem onClick={()=>{history.replace('/imc', {user: location.state.user}); menuController.close()}} routerDirection="none" lines="none" detail={false}>
                   <IonIcon slot="start" color="dark" icon={logOutOutline} />
                   <IonLabel>Calculadora IMC</IonLabel>

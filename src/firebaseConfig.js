@@ -14,10 +14,12 @@ var config = {
   };
 
 firebase.initializeApp(config);
+const database = firebase.database();
+const auth = firebase.auth();
 
 export async function loginUser(email, pass){
     try {
-        await firebase.auth().signInWithEmailAndPassword(email, pass);
+        await auth.signInWithEmailAndPassword(email, pass);
         return true;
     } catch(error) {
         return false;
@@ -27,13 +29,13 @@ export async function loginUser(email, pass){
 export async function registerUser(email, pass, nome, cpf, tipo) {
     try {
         const id = email.replace(/\./g, '_dot_')
-        await firebase.database().ref('users/'+id).set({
+        await database.ref('users/'+id).set({
             email,
             nome,
             cpf,
             tipo
         });
-        await firebase.auth().createUserWithEmailAndPassword(email, pass);
+        await auth.createUserWithEmailAndPassword(email, pass);
         return true;
     } catch (error) {
         console.log(error)
@@ -41,19 +43,15 @@ export async function registerUser(email, pass, nome, cpf, tipo) {
     }
 }
 
-export function mtoken () {
-    presentToast(firebase.messaging().getToken());
-}
-
 export async function getUser(email){
     try {
         const id = email.replace(/\./g, '_dot_');
         let dados;
        
-        await firebase.database().ref('users/'+id).once('value', (snapshot)=>{
+        await database.ref('users/'+id).once('value', (snapshot)=>{
             dados = snapshot.val();
         });
-        return new User(dados.tipo, dados.nome, dados.email, dados.cpf);
+        return new User(dados.tipo, dados.nome, dados.email, dados.cpf, dados.alunos, dados.nutri, dados.dieta);
         
     } catch(error){
         console.log(error);
@@ -61,8 +59,43 @@ export async function getUser(email){
     }
 }
 
-export async function cadastrarAluno(user, emailAluno){
-    
+export async function cadastrarAluno(email, emailAluno){
+    const idNutri = email.replace(/\./g, '_dot_');
+    const idAluno = emailAluno.replace(/\./g, '_dot_');
+    let alunos = [];
+    database.ref('users/'+idNutri+'/alunos').once('value', (snapshot)=>{
+        if(snapshot.val())
+            alunos = snapshot.val();
+    }).then(()=>{
+        database.ref('users/'+idNutri).child('alunos').set([...alunos, emailAluno]);
+        database.ref('users/'+idAluno).child('nutri').set(email);
+    });
+}
+
+export async function cadastrarDieta(emailAluno, dieta){
+    const idAluno = emailAluno.replace(/\./g, '_dot_');
+    database.ref('users/'+idAluno).child('dieta').set(dieta);
+}
+
+export async function cadastrarIMC(emailAluno, valor){
+    const idAluno = emailAluno.replace(/\./g, '_dot_');
+    let imcs = [];
+    database.ref('users/'+idAluno+'/imcs').once('value', (snapshot)=>{
+        if(snapshot.val())
+            imcs = snapshot.val();
+    }).then(()=>{
+        database.ref('users/'+idAluno).child('imcs').set([...imcs, valor]);
+    });
+}
+
+export async function getIMC(emailAluno){
+    let imcs = [];
+    const idAluno = emailAluno.replace(/\./g, '_dot_');
+    await database.ref('users/'+idAluno+'/imcs').once('value', (snapshot)=>{
+        if(snapshot.val())
+            imcs = snapshot.val();
+    });
+    return imcs;
 }
 
 
