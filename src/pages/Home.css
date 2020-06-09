@@ -30,18 +30,21 @@ ion-content ion-toolbar {
 
 .card-home {
   display: flex;
-  justify-content: center;
   width: 90%;
   height: 47%;
   font-size: 18pt;
-  padding: 10px;
-  text-align: center;
-  align-items: center;
+
   margin-bottom: 10px;
   background-color: #f6f6f6;
   box-shadow: 3px 3px 5px 3px #ddd;
   color: grey;
   border-radius: 10px;
+}
+
+#imc-chart-container{
+  width: 95%;
+  height: 90%;
+  
 }
 
 #cartao-frase {

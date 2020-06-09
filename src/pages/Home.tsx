@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonRouterOutlet, IonList, IonItem, IonMenu, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton, IonButtons, IonTabs, IonIcon, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
+import { IonRouterOutlet, IonList, IonItem, IonMenu, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton, IonButtons, IonTabs, IonIcon, IonTabBar, IonTabButton, IonLabel, useIonViewWillEnter } from '@ionic/react';
 import './Home.css';
 import { useLocation, useHistory } from 'react-router';
 import logo from '../images/logo2.png'
@@ -10,6 +10,8 @@ import Tabs from '../components/Tabs'
 import User from '../models/User';
 import LineChart from 'react-linechart';
 import { getIMC } from '../firebaseConfig';
+import { Chart } from 'react-charts'
+
 
 const Home: React.FC = () => {
   const location = useLocation() as any;
@@ -17,26 +19,35 @@ const Home: React.FC = () => {
   const user = location?.state?.user;
 
   const [imcs, setImcs]:any = useState([]);
-  const [data, setData]:any = useState([]);
+  const [data, setData]:any = useState(null);
 
   const atualizarGrafico = async() =>{
     const attimcs = await getIMC(user.email);
     console.log(attimcs)
     let points:any=[];
     for(let i=0; i<attimcs.length; i++){
-      points.push({x: i, y: attimcs[i]})
+      points.push([i, attimcs[i]])
     }
     setData([
-      {									
-          color: "steelblue", 
-          points: points 
+      {					
+        data: points
       }
     ])
     setImcs(attimcs);
   }
 
-  atualizarGrafico();
-  
+  //if(!data)
+    
+
+    useIonViewWillEnter(()=>{
+      atualizarGrafico();
+    })
+   
+    const axes = [
+        { primary: true, type: 'ordinal', position: 'bottom' },
+        { type: 'linear', position: 'left' }
+    ];
+
   if(user)
     return (
       <IonPage>
@@ -55,12 +66,9 @@ const Home: React.FC = () => {
           <div id="conteudo-home-container">
             Evolução
             <div className="card-home">
-            <LineChart 
-                        width={300}
-                        height={250}
-                        data={data}
-                    />
-            
+              <div id="imc-chart-container">
+                {data? <Chart data={data} axes={axes} /> : ''}
+              </div>
             </div>
            <div className="card-home" id="cartao-dias">
               <div id="cartao-dias-container">
