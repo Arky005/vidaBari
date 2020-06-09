@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import User from './models/User';
 import { presentToast } from './toast';
+const moment = require('moment');
 
 var config = {
     apiKey: "AIzaSyD7wNIAe_UMlHwtNLENBM6k6DqKrmevjTU",
@@ -79,17 +80,20 @@ export async function cadastrarDieta(emailAluno, dieta){
 
 export async function cadastrarIMC(emailAluno, valor){
     const idAluno = emailAluno.replace(/\./g, '_dot_');
-    let imcs = [];
+    let imcs = {};
     database.ref('users/'+idAluno+'/imcs').once('value', (snapshot)=>{
         if(snapshot.val())
             imcs = snapshot.val();
     }).then(()=>{
-        database.ref('users/'+idAluno).child('imcs').set([...imcs, valor]);
+        const key = moment().format('YYYY-MM-DD');
+        const newIMC = {...imcs};
+        newIMC[key] = valor;
+        database.ref('users/'+idAluno).child('imcs').set(newIMC);
     });
 }
 
 export async function getIMC(emailAluno){
-    let imcs = [];
+    let imcs = {};
     const idAluno = emailAluno.replace(/\./g, '_dot_');
     await database.ref('users/'+idAluno+'/imcs').once('value', (snapshot)=>{
         if(snapshot.val())
@@ -97,6 +101,7 @@ export async function getIMC(emailAluno){
     });
     return imcs;
 }
+
 
 
   

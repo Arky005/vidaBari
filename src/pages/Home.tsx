@@ -11,6 +11,7 @@ import User from '../models/User';
 import LineChart from 'react-linechart';
 import { getIMC } from '../firebaseConfig';
 import { Chart } from 'react-charts'
+const moment = require('moment');
 
 
 const Home: React.FC = () => {
@@ -18,27 +19,24 @@ const Home: React.FC = () => {
   const state = useState() as any;
   const user = location?.state?.user;
 
-  const [imcs, setImcs]:any = useState([]);
+  //const [imcs, setImcs]:any = useState([]);
   const [data, setData]:any = useState(null);
 
   const atualizarGrafico = async() =>{
     const attimcs = await getIMC(user.email);
-    console.log(attimcs)
     let points:any=[];
-    for(let i=0; i<attimcs.length; i++){
-      points.push([i, attimcs[i]])
-    }
+
+    Object.keys(attimcs).forEach((key)=>{
+      points.push([moment(key).format('DD/MM'), attimcs[key]])
+    })
+    
     setData([
       {					
         data: points
       }
     ])
-    setImcs(attimcs);
   }
-
-  //if(!data)
     
-
     useIonViewWillEnter(()=>{
       atualizarGrafico();
     })
@@ -64,7 +62,7 @@ const Home: React.FC = () => {
         </IonHeader>
         <IonContent color="secondary">
           <div id="conteudo-home-container">
-            Evolução
+            Histórico de IMC
             <div className="card-home">
               <div id="imc-chart-container">
                 {data? <Chart data={data} axes={axes} /> : ''}

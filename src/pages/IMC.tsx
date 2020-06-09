@@ -6,6 +6,7 @@ import logo from '../images/logo2.png'
 import Tabs from '../components/Tabs'
 import GaugeChart  from 'react-gauge-chart';
 import { presentToast } from '../toast';
+import { cadastrarIMC } from '../firebaseConfig';
 
 const IMC: React.FC = () => {
   const location = useLocation() as any;
@@ -34,6 +35,8 @@ const IMC: React.FC = () => {
           texto!.innerHTML="IMC: "+valor+"<br>Você está com obesidade grau 2.";
         else if( valor>=40 )
           texto!.innerHTML="IMC: "+valor+"<br>Você está com obesidade grau 3.";
+
+        cadastrarIMC(user.email, valor);
 
         return valor;
 
