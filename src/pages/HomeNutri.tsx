@@ -13,7 +13,6 @@ const HomeNutri: React.FC = () => {
   const location = useLocation() as any;
   const state = useState() as any;
   const user = location?.state?.user;
-  console.log(user);
   
   if(user)
     return (

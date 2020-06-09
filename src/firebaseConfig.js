@@ -60,6 +60,8 @@ export async function getUser(email){
     }
 }
 
+
+
 export async function cadastrarAluno(email, emailAluno){
     const idNutri = email.replace(/\./g, '_dot_');
     const idAluno = emailAluno.replace(/\./g, '_dot_');
@@ -76,6 +78,16 @@ export async function cadastrarAluno(email, emailAluno){
 export async function cadastrarDieta(emailAluno, dieta){
     const idAluno = emailAluno.replace(/\./g, '_dot_');
     database.ref('users/'+idAluno).child('dieta').set(dieta);
+}
+
+export async function getDieta(emailAluno){
+    const idAluno = emailAluno.replace(/\./g, '_dot_');
+    let resp = '';
+    await database.ref('users/'+idAluno).child('dieta').once('value', (snapshot)=>{
+        if(snapshot.val())
+            resp = snapshot.val();
+    });
+    return resp;
 }
 
 export async function cadastrarIMC(emailAluno, valor){

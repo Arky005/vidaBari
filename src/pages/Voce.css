@@ -1,0 +1,12 @@
+.card-home-vc {
+    display: flex;
+    width: 90%;
+    height: 47%;
+    font-size: 16pt;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f6f6f6;
+    box-shadow: 3px 3px 5px 3px #ddd;
+    color: grey;
+    border-radius: 10px;
+  }

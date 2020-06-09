@@ -65,12 +65,12 @@ const Home: React.FC = () => {
             Histórico de IMC
             <div className="card-home">
               <div id="imc-chart-container">
-                {data? <Chart data={data} axes={axes} /> : ''}
+                {data? <Chart data={data} axes={axes} /> : <div>Carregando gráfico...</div>}
               </div>
             </div>
            <div className="card-home" id="cartao-dias">
               <div id="cartao-dias-container">
-              <span>Em acompanhamento há 12 dias.</span>
+              <span>Em acompanhamento há 18 dias.</span>
               <IonIcon icon={happy} color="primary" id="icone-frase"></IonIcon>
               <span>Continue assim! Perseverança é a chave!</span>
               </div>

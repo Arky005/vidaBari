@@ -13,7 +13,6 @@ const Voce: React.FC = () => {
   const location = useLocation() as any;
   const state = useState() as any;
   const user = location?.state?.user;
-  console.log(user);
   
   if(user)
     return (
@@ -32,7 +31,7 @@ const Voce: React.FC = () => {
         <IonContent color="secondary">
           <div id="conteudo-home-container2">
             DIETA ATUAL
-            <div className="card-home2">
+            <div className="card-home-vc">
               {user.dieta}
             </div>
             Seus dados

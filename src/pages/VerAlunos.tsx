@@ -8,7 +8,7 @@ import { happy } from 'ionicons/icons';
 import {  Route } from 'react-router-dom';
 import Tabs from '../components/Tabs'
 import User from '../models/User';
-import { cadastrarDieta } from '../firebaseConfig';
+import { cadastrarDieta, getDieta } from '../firebaseConfig';
 import { presentToast } from '../toast';
 
 const VerAlunos: React.FC = () => {
@@ -19,6 +19,7 @@ const VerAlunos: React.FC = () => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [alunoSelecionado, setAlunoSelecionado] = useState('');
+  const [dieta, setDieta] = useState('');
   
   if(user)
     return (
@@ -39,7 +40,7 @@ const VerAlunos: React.FC = () => {
           ALUNOS
             <div className="card-home4">
                 {user.alunos.map((element, index) => {
-                  return (<IonItem onClick={()=>{setShowAlert(true); setAlunoSelecionado(element)}} key={index}>{element}</IonItem>)
+                  return (<IonItem onClick={async()=>{setDieta(await getDieta(element)); setShowAlert(true); setAlunoSelecionado(element); }} key={index}>{element}</IonItem>)
                 })}
             </div>
           <IonAlert
@@ -51,7 +52,8 @@ const VerAlunos: React.FC = () => {
               {
                 name: 'dieta',
                 type: 'text',
-                placeholder: 'Dieta'
+                placeholder: 'Dieta',
+                value: dieta
               }
             ]}
             buttons={[
