@@ -40,7 +40,7 @@ const VerAlunos: React.FC = () => {
           ALUNOS
             <div className="card-home4">
                 {user.alunos.map((element, index) => {
-                  return (<IonItem onClick={async()=>{setDieta(await getDieta(element)); setShowAlert(true); setAlunoSelecionado(element); }} key={index}>{element}</IonItem>)
+                  return (<IonItem onClick={async()=>{setAlunoSelecionado(element); setDieta(await getDieta(element)); setShowAlert(true); }} key={index}>{element}</IonItem>)
                 })}
             </div>
           <IonAlert
