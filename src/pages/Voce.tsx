@@ -37,7 +37,8 @@ const Voce: React.FC = () => {
             Seus dados
             <div className="card-home2">
                 Nome: {user?.nome}<br></br>
-                E-mail: {user?.email}
+                E-mail: {user?.email}<br></br>
+                Nutricionista: {user.nutri || 'Nenhum'}
             </div>
             
 

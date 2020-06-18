@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption, IonIcon } from '@ionic/react';
+import { IonContent, IonPage, IonInput, IonItem, IonLabel, IonButton, IonProgressBar, IonSelect, IonSelectOption, IonIcon, useIonViewWillEnter } from '@ionic/react';
 import './Cadastro.css';
 import {  registerUser} from '../firebaseConfig';
 import {presentToast} from '../toast';
@@ -18,6 +18,14 @@ const Cadastro: React.FC = () => {
   const [tipoDeUsuario, setTipoDeUsuario] = useState('usuario');
   const [CPF, setCPF] = useState('');
   const history = useHistory();
+
+  useIonViewWillEnter(()=>{
+    setEmail('');
+    setCPF('');
+    setNome('');
+    setPassword('');
+
+  })
 
   const cpfMask = (value:string) => {
     return value
@@ -73,7 +81,7 @@ const Cadastro: React.FC = () => {
             </IonItem>
             <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">E-mail</IonLabel>
-                <IonInput type="email" onIonChange={(e:any) => setEmail(e.target.value)}></IonInput>
+                <IonInput value={email} type="email" onIonChange={(e:any) => setEmail(e.target.value)}></IonInput>
             </IonItem>
             <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">CPF</IonLabel>
@@ -82,11 +90,11 @@ const Cadastro: React.FC = () => {
             </IonItem>
             <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">Nome completo</IonLabel>
-                <IonInput id="nome-cadastro" onIonChange={(e:any) => setNome(e.target.value)}></IonInput>
+                <IonInput value={nome} id="nome-cadastro" onIonChange={(e:any) => setNome(e.target.value)}></IonInput>
             </IonItem>
             <IonItem color="light" className="input-cadastro">
                 <IonLabel position="floating">Senha</IonLabel>
-                <IonInput type="password" onIonChange={(e:any) => setPassword(e.target.value)}></IonInput>
+                <IonInput value={password} type="password" onIonChange={(e:any) => setPassword(e.target.value)}></IonInput>
             </IonItem>
             <div id="loading-login">{(mostrarLoading ? <IonProgressBar type="indeterminate" color="medium"></IonProgressBar> : '')}</div>
             <IonButton color="tertiary" onClick={()=>efetuarCadastro()}>Efetuar cadastro</IonButton>

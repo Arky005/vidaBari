@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonRouterOutlet, IonList, IonItem, IonMenu, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton, IonButtons, IonTabs, IonIcon, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
+import { IonRouterOutlet, IonList, IonItem, IonMenu, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonMenuButton, IonButtons, IonTabs, IonIcon, IonTabBar, IonTabButton, IonLabel, useIonViewWillEnter } from '@ionic/react';
 import './HomeNutri.css';
 import { useLocation, useHistory } from 'react-router';
 import logo from '../images/logo2.png'
@@ -8,12 +8,17 @@ import { happy } from 'ionicons/icons';
 import {  Route } from 'react-router-dom';
 import Tabs from '../components/Tabs'
 import User from '../models/User';
+import { getUser } from '../firebaseConfig';
 
 const HomeNutri: React.FC = () => {
   const location = useLocation() as any;
   const state = useState() as any;
   const user = location?.state?.user;
   
+  useIonViewWillEnter(async ()=>{
+    location.state.user = await getUser(user.email);
+  })
+
   if(user)
     return (
       <IonPage>
